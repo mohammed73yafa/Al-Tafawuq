@@ -225,7 +225,7 @@
         <ul class="sub-menu">
           <li><a href="pag1.html"> كتابة رسائل الماجستير والدكتوراه </a></li>
           <li><a href="pag2.html">كتابة أبحاث ومشاريع التخرج</a></li>
-               <li><a href="pag3.html">كتابة الأبحاث العلمية</</a></li>
+               <li><a href="pag3.html">كتابة الأبحاث العلمية</a></li>
                <li><a href="dev.html"></a></li>
         </ul>
       </li>
@@ -340,26 +340,13 @@ setInterval(() => {
     }
 
     // تغيير الصور في معرض الأعمال
-    let works = [
-      {img: "a1.jpg", text: " رأس المال وأثره في إدارة الأزمات", link: "details1.html"},
-      {img: "a2.jpg", text: "اثر الذكاء الاصطناعي في إدارة المشاريع الصحية", link: "details2.html"},
-      {img: "a3.jpg", text: "الأزهار النفسي وعلاقتة باليقظة العقلية", link: "details3.html"}
-    ];
-    let current = 0;
-    function nextWork() {
-      current = (current + 1) % works.length;
-      let box = document.getElementById("portfolioBox");
-      box.innerHTML = `
-        <img src="${works[current].img}" alt="عمل">
-        <p>${works[current].text}</p>
-        <a href="${works[current].link}" class="details-btn">تفاصيل الخدمة</a>
-      `;
-    }
+  
   </script>
 
 </body>
 
 </html>
+
 
 
 
