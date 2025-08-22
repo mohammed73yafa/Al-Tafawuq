@@ -267,11 +267,18 @@
   </section>
 
   <!-- معرض الأعمال -->
-<div class="portfolio-box" id="portfolioBox">
-  <img src="a1.jpg" alt="عمل 1">
-  <p>رأس المال وأثره في إدارة الأزمات</p>
-  <a href="details1.html" class="details-btn">تفاصيل الخدمة</a>
-</div>
+<section class="portfolio" id="portfolio">
+  <h2>معرض الأعمال</h2>
+  <div class="portfolio-box" id="portfolioBox">
+    <img src="a1.jpg" alt="عمل 1">
+    <p>رأس المال وأثره في إدارة الأزمات</p>
+    <a href="details1.html" class="details-btn">تفاصيل الخدمة</a>
+  </div>
+  <div style="margin-top:15px;">
+    <button class="next-slide" onclick="nextWork()">⮞</button>
+    <button class="next-slide" onclick="prevWork()">⮜</button>
+  </div>
+</section>
 
 <script>
 let works = [
@@ -281,15 +288,32 @@ let works = [
 ];
 let current = 0;
 
-function nextWork() {
-  current = (current + 1) % works.length;
+// تحديث محتوى المعرض
+function showWork(index) {
   let box = document.getElementById("portfolioBox");
   box.innerHTML = `
-    <img src="${works[current].img}" alt="عمل">
-    <p>${works[current].text}</p>
-    <a href="${works[current].link}" class="details-btn">تفاصيل الخدمة</a>
+    <img src="${works[index].img}" alt="عمل">
+    <p>${works[index].text}</p>
+    <a href="${works[index].link}" class="details-btn">تفاصيل الخدمة</a>
   `;
 }
+
+// التنقل للأمام
+function nextWork() {
+  current = (current + 1) % works.length;
+  showWork(current);
+}
+
+// التنقل للخلف
+function prevWork() {
+  current = (current - 1 + works.length) % works.length;
+  showWork(current);
+}
+
+// تغيير تلقائي كل 3 ثواني
+setInterval(() => {
+  nextWork();
+}, 3000);
 </script>
 
 
@@ -336,6 +360,7 @@ function nextWork() {
 </body>
 
 </html>
+
 
 
 
