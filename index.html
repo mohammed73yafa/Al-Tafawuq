@@ -267,15 +267,31 @@
   </section>
 
   <!-- معرض الأعمال -->
-  <section class="portfolio" id="portfolio">
-    <h2>معرض الأعمال</h2>
-    <div class="portfolio-box" id="portfolioBox">
-      <img src="work1.jpg" alt="عمل 1">
-      <p>وصف مختصر للعمل</p>
-      <a href="details1.html" class="details-btn">تفاصيل الخدمة</a>
-    </div>
-    <button class="next-slide" onclick="nextWork()">⮞</button>
-  </section>
+<div class="portfolio-box" id="portfolioBox">
+  <img src="a1.jpg" alt="عمل 1">
+  <p>رأس المال وأثره في إدارة الأزمات</p>
+  <a href="details1.html" class="details-btn">تفاصيل الخدمة</a>
+</div>
+
+<script>
+let works = [
+  {img: "a1.jpg", text: "رأس المال وأثره في إدارة الأزمات", link: "details1.html"},
+  {img: "a2.jpg", text: "اثر الذكاء الاصطناعي في إدارة المشاريع الصحية", link: "details2.html"},
+  {img: "a3.jpg", text: "الأزهار النفسي وعلاقتة باليقظة العقلية", link: "details3.html"}
+];
+let current = 0;
+
+function nextWork() {
+  current = (current + 1) % works.length;
+  let box = document.getElementById("portfolioBox");
+  box.innerHTML = `
+    <img src="${works[current].img}" alt="عمل">
+    <p>${works[current].text}</p>
+    <a href="${works[current].link}" class="details-btn">تفاصيل الخدمة</a>
+  `;
+}
+</script>
+
 
   <!-- الفوتر -->
   <footer class="main-footer" id="contact">
@@ -320,6 +336,7 @@
 </body>
 
 </html>
+
 
 
 
