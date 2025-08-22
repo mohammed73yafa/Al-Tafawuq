@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الصفحة الرئيسية</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    /* الشريط العلوي */
+    .main-header {
+      background: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
+      z-index: 10;
+    }
+    .logo {
+      flex-grow: 1;
+      text-align: center;
+    }
+    .logo img {
+      height: 40px; /* حجم شعار داخل الشريط */
+    }
+    .menu-toggle {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* القائمة الجانبية */
+    .side-menu {
+      position: fixed;
+      top: 0;
+      left: -260px;
+      width: 250px;
+      height: 100%;
+      background: #fff;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+      transition: left 0.3s ease;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .side-menu.open { left: 0; }
+    .side-menu ul {
+      list-style: none;
+      padding: 0;
+      margin: 60px 0 0;
+    }
+    .side-menu li {
+      padding: 12px 20px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .side-menu a { color: #333; text-decoration: none; }
+
+    /* زر إغلاق القائمة */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    /* القائمة الفرعية */
+    .sub-menu { display: none; background: #f9f9f9; }
+    .dropdown.active .sub-menu { display: block; }
+
+    /* أيقونات تواصل في القائمة */
+    .menu-social {
+      display: flex;
+      justify-content: center;
+      padding: 15px;
+      gap: 15px;
+    }
+    .menu-social a {
+      font-size: 22px;
+      color: #00aaff;
+    }
+
+    /* الصورة تحت الشريط */
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* شريط نص متحرك */
+    .ticker-bar {
+      background: #00aaff;
+      color: #fff;
+      padding: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    .ticker-text {
+      white-space: nowrap;
+      animation: ticker 10s linear infinite;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    /* قسم الخدمات */
+    .services {
+      padding: 20px;
+      background: #fff;
+    }
+    .services h2 {
+      text-align: center;
+      color: #00aaff;
+      margin-bottom: 20px;
+    }
+    .service-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .service {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 10px;
+      width: 200px;
+      text-align: center;
+      cursor: pointer;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* معرض الأعمال */
+    .portfolio {
+      padding: 20px;
+      background: #fff;
+      text-align: center;
+    }
+    .portfolio h2 {
+      color: #00aaff;
+      margin-bottom: 15px;
+    }
+    .portfolio-box {
+      border: 2px solid #00aaff;
+      padding: 15px;
+      text-align: center;
+      background: #fff;
+      margin: auto;
+      max-width: 400px;
+    }
+    .portfolio-box img {
+      max-width: 100%;
+      height: auto;
+    }
+    .details-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background: #00aaff;
+      color: #fff;
+      padding: 8px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .next-slide {
+      margin-top: 15px;
+      background: #00aaff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* الفوتر */
+    .main-footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+    .footer-icons a {
+      color: #fff;
+      margin: 0 10px;
+      font-size: 22px;
+    }
+    .main-footer p {
+      margin: 10px 0;
+    }
+    .main-footer a {
+      color: #00aaff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- الشريط العلوي -->
+  <header class="main-header">
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="logo"><img src="logo.png" alt="شعار الموقع"></div>
+  </header>
+
+  <!-- القائمة الجانبية -->
+  <nav class="side-menu" id="sideMenu">
+    <span class="close-btn" onclick="toggleMenu()">✖</span>
+    <ul>
+      <li><a href="#">الرئيسية</a></li>
+      <li class="dropdown" onclick="toggleDropdown(this)">
+        <span>خدماتنا</span>
+        <span class="icon">+</span>
+        <ul class="sub-menu">
+          <li><a href="design.html">خدمة التصميم</a></li>
+          <li><a href="dev.html">خدمة التطوير</a></li>
+        </ul>
+      </li>
+      <li><a href="#portfolio">معرض الأعمال</a></li>
+      <li><a href="#contact">تواصل معنا</a></li>
+    </ul>
+    <div class="menu-social">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+  </nav>
+
+  <!-- صورة تحت الشريط -->
+  <section class="hero">
+    <img src="banner.jpg" alt="صورة رئيسية">
+  </section>
+
+  <!-- شريط النص المتحرك -->
+  <div class="ticker-bar">
+    <p class="ticker-text">مرحبًا بكم في موقعنا | نقدم أفضل الخدمات | تواصل معنا الآن</p>
+  </div>
+
+  <!-- قسم الخدمات -->
+  <section class="services">
+    <h2>خدماتنا</h2>
+    <div class="service-list">
+      <div class="service" onclick="location.href='design.html'">خدمة التصميم</div>
+      <div class="service" onclick="location.href='dev.html'">خدمة التطوير</div>
+      <div class="service" onclick="location.href='marketing.html'">خدمة التسويق</div>
+    </div>
+  </section>
+
+  <!-- معرض الأعمال -->
+  <section class="portfolio" id="portfolio">
+    <h2>معرض الأعمال</h2>
+    <div class="portfolio-box" id="portfolioBox">
+      <img src="work1.jpg" alt="عمل 1">
+      <p>وصف مختصر للعمل</p>
+      <a href="details1.html" class="details-btn">تفاصيل الخدمة</a>
+    </div>
+    <button class="next-slide" onclick="nextWork()">⮞</button>
+  </section>
+
+  <!-- الفوتر -->
+  <footer class="main-footer" id="contact">
+    <div class="footer-icons">
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="https://wa.me/XXXXXXXXXXX"><i class="fab fa-whatsapp"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <p>جميع الحقوق محفوظة © 2025</p>
+    <p><a href="https://wa.me/XXXXXXXXXXX">تصميم وتطوير: المصمم</a></p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('sideMenu').classList.toggle('open');
+    }
+    function toggleDropdown(el) {
+      el.classList.toggle('active');
+      let icon = el.querySelector('.icon');
+      icon.textContent = el.classList.contains('active') ? "–" : "+";
+    }
+
+    // تغيير الصور في معرض الأعمال
+    let works = [
+      {img: "work1.jpg", text: "وصف مختصر للعمل 1", link: "details1.html"},
+      {img: "work2.jpg", text: "وصف مختصر للعمل 2", link: "details2.html"},
+      {img: "work3.jpg", text: "وصف مختصر للعمل 3", link: "details3.html"}
+    ];
+    let current = 0;
+    function nextWork() {
+      current = (current + 1) % works.length;
+      let box = document.getElementById("portfolioBox");
+      box.innerHTML = `
+        <img src="${works[current].img}" alt="عمل">
+        <p>${works[current].text}</p>
+        <a href="${works[current].link}" class="details-btn">تفاصيل الخدمة</a>
+      `;
+    }
+  </script>
+
+</body>
+</html>
